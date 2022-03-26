@@ -1,0 +1,94 @@
+{% comment %}
+  CVR Foil
+{% endcomment %}
+
+{% section 'product-template-cvr' %}
+{% section 'product-story-sections' %}
+{% section 'product-recommendations' %}
+{% section 'recently-viewed' %}
+
+{% if collection %}
+  <div class="text-center page-content page-content--bottom">
+    <a href="{% if collection.handle == 'frontpage' %}/{% else %}{{ collection.url }}{% endif %}" class="btn btn--small return-link">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-left" viewBox="0 0 50 15"><path d="M50 5.38v4.25H15V15L0 7.5 15 0v5.38z"/></svg> {{ 'products.general.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}
+
+{% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, auto_install: true, product: product %}
+
+{% comment %}CVR Foil JS{% endcomment %}
+<script type="text/javascript">
+  document.addEventListener('page:loaded', function() {
+    CVR_Size  = document.getElementById('SingleOptionSelector-7602226331889-option-0');
+    CVR_Color = document.getElementById('SingleOptionSelector-7602226331889-option-1');
+    CVR_Font  = document.getElementById('SingleOptionSelector-7602226331889-option-2');
+    CVR_Input = document.getElementById('CVR');
+    CVR_Preview = document.getElementById('CVR_Preview');
+
+    const cvrInputHandler = function() {
+      CVR_Preview.innerHTML = 'CVR ' + CVR_Input.value.padStart(8, '0');
+    }
+
+    const cvrColorHandler = function() {
+      cvrSetColor();
+    }
+
+    const cvrFontHandler = function() {
+      cvrSetFont();
+    }
+
+    const cvrSetColor = function() {
+      switch (CVR_Color.selectedIndex) {
+        case 0:
+          CVR_Preview.style.color  = "Black";
+          break;
+        case 1:
+          CVR_Preview.style.color  = "Red";
+          break;
+        case 2:
+          CVR_Preview.style.color  = "Blue";
+          break;
+        case 3:
+          CVR_Preview.style.color  = "Yellow";
+          break;
+        case 4:
+          CVR_Preview.style.color  = "White";
+          break;
+      }
+    }
+
+    const cvrSetFont = function() {
+      if (CVR_Font.selectedIndex == 0) {
+        CVR_Preview.style.fontFamily  = "Arial, sans-serif";
+      } else {
+        CVR_Preview.style.fontFamily  = "Times New Roman, serif";
+      }
+    }
+
+    cvrSetColor();
+    cvrSetFont();
+
+    CVR_Input.addEventListener('input', cvrInputHandler);
+    CVR_Input.addEventListener('propertychange', cvrInputHandler); // for IE8
+
+    CVR_Color.addEventListener('input', cvrColorHandler);
+    CVR_Color.addEventListener('propertychange', cvrColorHandler);
+
+    CVR_Font.addEventListener('input', cvrFontHandler);
+    CVR_Font.addEventListener('propertychange', cvrFontHandler);
+  });
+</script>
+
+<style>
+#CVR_Preview {
+  text-align: center;
+  padding: 40px 10px;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "Arial";
+  color: #000;
+  background: #f5f5f5;
+  margin: 20px 0;
+}
+</style>
