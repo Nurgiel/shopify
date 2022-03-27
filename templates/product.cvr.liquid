@@ -20,11 +20,11 @@
 {% comment %}CVR Foil JS{% endcomment %}
 <script type="text/javascript">
   document.addEventListener('page:loaded', function() {
-    CVR_Size  = document.getElementById('SingleOptionSelector-7602226331889-option-0');
-    CVR_Color = document.getElementById('SingleOptionSelector-7602226331889-option-1');
-    CVR_Font  = document.getElementById('SingleOptionSelector-7602226331889-option-2');
-    CVR_Input = document.getElementById('CVR');
-    CVR_Preview = document.getElementById('CVR_Preview');
+    const CVR_Size  = document.getElementById('SingleOptionSelector-7602226331889-option-0');
+    const CVR_Color = document.getElementById('SingleOptionSelector-7602226331889-option-1');
+    const CVR_Font  = document.getElementById('skrifttype');
+    const CVR_Input = document.getElementById('CVR');
+    const CVR_Preview = document.getElementById('CVR_Preview');
 
     const cvrInputHandler = function() {
       CVR_Preview.innerHTML = 'CVR ' + CVR_Input.value.padStart(8, '0');
@@ -59,10 +59,37 @@
     }
 
     const cvrSetFont = function() {
-      if (CVR_Font.selectedIndex == 0) {
-        CVR_Preview.style.fontFamily  = "Arial, sans-serif";
-      } else {
-        CVR_Preview.style.fontFamily  = "Times New Roman, serif";
+      switch (CVR_Font.selectedIndex) {
+        case 0:
+          CVR_Preview.style.fontFamily  = "Arial, sans-serif";
+          break;
+        case 1:
+          CVR_Preview.style.fontFamily  = "Verdana, sans-serif";
+          break;
+        case 2:
+          CVR_Preview.style.fontFamily  = "Helvetica, sans-serif";
+          break;
+        case 3:
+          CVR_Preview.style.fontFamily  = "Tahoma, sans-serif";
+          break;
+        case 4:
+          CVR_Preview.style.fontFamily  = "Trebuchet MS, sans-serif";
+          break;
+        case 5:
+          CVR_Preview.style.fontFamily  = "Times New Roman, serif";
+          break;
+        case 6:
+          CVR_Preview.style.fontFamily  = "Georgia, serif";
+          break;
+        case 7:
+          CVR_Preview.style.fontFamily  = "Garamond, serif";
+          break;
+        case 8:
+          CVR_Preview.style.fontFamily  = "Courier New, monospace";
+          break;
+        case 9:
+          CVR_Preview.style.fontFamily  = "Brush Script MT, cursive";
+          break;
       }
     }
 
