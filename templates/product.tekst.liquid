@@ -1,0 +1,140 @@
+{% comment %}
+  Tekst Foil
+{% endcomment %}
+
+{% section 'product-template-tekst' %}
+{% section 'product-story-sections' %}
+{% section 'product-recommendations' %}
+{% section 'recently-viewed' %}
+
+{% if collection %}
+  <div class="text-center page-content page-content--bottom">
+    <a href="{% if collection.handle == 'frontpage' %}/{% else %}{{ collection.url }}{% endif %}" class="btn btn--small return-link">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-left" viewBox="0 0 50 15"><path d="M50 5.38v4.25H15V15L0 7.5 15 0v5.38z"/></svg> {{ 'products.general.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}
+
+{% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, auto_install: true, product: product %}
+
+{% comment %}Tekst Foil JS{% endcomment %}
+<script type="text/javascript">
+  document.addEventListener('page:loaded', function() {
+    const CVR_Size  = document.getElementById('SingleOptionSelector-7602226331889-option-0');
+    const CVR_Color = document.getElementById('FARVE');
+    const CVR_Font  = document.getElementById('SKRIFTTYPE');
+    const CVR_Input = document.getElementById('TEKST');
+    const CVR_Preview = document.getElementById('Tekst_Preview');
+
+    const cvrInputHandler = function() {
+      CVR_Preview.innerHTML = CVR_Input.value;
+    }
+
+    const cvrColorHandler = function() {
+      cvrSetColor();
+    }
+
+    const cvrFontHandler = function() {
+      cvrSetFont();
+    }
+
+     const cvrSetColor = function() {
+      switch (CVR_Color.selectedIndex) {
+        case 0:
+          CVR_Preview.style.color  = "#eaebef";
+          break;
+        case 1:
+          CVR_Preview.style.color  = "#ffc701";
+          break;
+        case 2:
+          CVR_Preview.style.color  = "#f4e318";
+          break;
+        case 3:
+          CVR_Preview.style.color  = "#e24601";
+          break;
+        case 4:
+          CVR_Preview.style.color  = "#b6010d";
+          break;
+        case 5:
+          CVR_Preview.style.color  = "#602e68";
+          break;
+        case 6:
+          CVR_Preview.style.color  = "#c92969";
+          break;
+        case 7:
+          CVR_Preview.style.color  = "#f488b6";
+          break;
+        case 8:
+          CVR_Preview.style.color  = "#7961a1";
+          break;
+        case 9:
+          CVR_Preview.style.color  = "#0286c6";
+          break;
+        case 10:
+          CVR_Preview.style.color  = "#5acebb";
+          break;
+        case 11:
+          CVR_Preview.style.color  = "#027a4f";
+          break;
+        case 12:
+          CVR_Preview.style.color  = "#013b7b";
+          break;
+        case 13:
+          CVR_Preview.style.color  = "#757e7d";
+          break;
+        case 14:
+          CVR_Preview.style.color  = "#070609";
+          break;
+        case 15:
+          CVR_Preview.style.color  = "#979a95";
+          break;
+        case 16:
+          CVR_Preview.style.color  = "#ab7e50";
+          break;
+      }
+    }
+
+    const cvrSetFont = function() {
+      switch (CVR_Font.selectedIndex) {
+        case 0:
+          CVR_Preview.style.fontFamily  = "Arial, sans-serif";
+          break;
+        case 1:
+          CVR_Preview.style.fontFamily  = "Verdana, sans-serif";
+          break;
+        case 2:
+          CVR_Preview.style.fontFamily  = "Tahoma, sans-serif";
+          break;
+        case 3:
+          CVR_Preview.style.fontFamily  = "Trebuchet MS, sans-serif";
+          break;
+        case 4:
+          CVR_Preview.style.fontFamily  = "Times New Roman, serif";
+          break;
+      }
+    }
+
+    cvrSetColor();
+    cvrSetFont();
+
+    CVR_Input.addEventListener('input', cvrInputHandler);
+    CVR_Input.addEventListener('propertychange', cvrInputHandler); // for IE8
+
+    CVR_Color.addEventListener('input', cvrColorHandler);
+    CVR_Color.addEventListener('propertychange', cvrColorHandler);
+
+    CVR_Font.addEventListener('input', cvrFontHandler);
+    CVR_Font.addEventListener('propertychange', cvrFontHandler);
+  });
+</script>
+
+<style>
+#Tekst_Preview {
+  text-align: center;
+  padding: 40px 10px;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "Arial";
+  margin: 20px 0;
+}
+</style>
