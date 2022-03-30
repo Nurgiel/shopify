@@ -139,40 +139,37 @@
 
       <p class="line-item-property__field">
         <label>SKRIFTTYPE</label>
-        <select required class="required" id="SKRIFTTYPE" name="properties[SKRIFTTYPE]">
-          <option value="Arial (sans-serif)">Arial (sans-serif)</option>
-          <option value="Verdana (sans-serif)">Verdana (sans-serif)</option>
-          <option value="Tahoma (sans-serif)">Tahoma (sans-serif)</option>
-          <option value="Trebuchet MS (sans-serif)">Trebuchet MS (sans-serif)</option>
-          <option value="Times New Roman (serif)">Times New Roman (serif)</option>
-        </select>
+        <input required class="required" id="SKRIFTTYPE" name="properties[SKRIFTTYPE]" class="fonts">
       </p>
 
       <p class="line-item-property__field">
         <label>FARVE</label>
         <select required class="required" id="FARVE" name="properties[FARVE]">
+          <option value="black 070">black 070</option>
           <option value="white 010">white 010</option>
           <option value="yellow 021">yellow 021</option>
           <option value="brimstone yellow 025">brimstone yellow 025</option>
-          <option value="orange 034">orange 034</option>
           <option value="red 031">red 031</option>
+          <option value="orange 034">orange 034</option>
           <option value="violet 040">violet 040</option>
           <option value="pink 041">pink 041</option>
-          <option value="soft pink 045">soft pink 045</option>
           <option value="lavender 043">lavender 043</option>
+          <option value="soft pink 045">soft pink 045</option>
           <option value="light blue 053">light blue 053</option>
           <option value="mint 055">mint 055</option>
           <option value="green 061">green 061</option>
           <option value="blue 067">blue 067</option>
           <option value="grey 071">grey 071</option>
-          <option value="black 070">black 070</option>
           <option value="silver grey 090">silver grey 090</option>
           <option value="gold 091">gold 091</option>
         </select>
       </p>
     </div>
 
-    <div id="Tekst_Preview">DIN TEKST HER</div>
+    <div id="PreviewContainer">
+      <div id="Preview">DIN TEKST HER</div>
+      <div id="PreviewHeightContainer">{{ 'height.png' | asset_url |  img_tag: 'Height' }}<span id="PreviewHeight"><strong>3cm</strong></span></div>
+    </div>
 
     <button
       {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}

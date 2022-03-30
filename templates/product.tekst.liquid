@@ -17,124 +17,139 @@
 
 {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, auto_install: true, product: product %}
 
-{% comment %}Tekst Foil JS{% endcomment %}
+{% comment %}Tekst Foil Part{% endcomment %}
 <script type="text/javascript">
   document.addEventListener('page:loaded', function() {
-    const CVR_Size  = document.getElementById('SingleOptionSelector-7602226331889-option-0');
-    const CVR_Color = document.getElementById('FARVE');
-    const CVR_Font  = document.getElementById('SKRIFTTYPE');
-    const CVR_Input = document.getElementById('TEKST');
-    const CVR_Preview = document.getElementById('Tekst_Preview');
+    const Size  = document.getElementById('SingleOptionSelector-7604612169969-option-0');
+    const Color = document.getElementById('FARVE');
+    const Font  = document.getElementById('SKRIFTTYPE');
+    const Input = document.getElementById('TEKST');
+    const Preview = document.getElementById('Preview');
+    const PreviewHeight = document.getElementById('PreviewHeight');
 
-    const cvrInputHandler = function() {
-      CVR_Preview.innerHTML = CVR_Input.value;
+    const inputHandler = function() {
+      Preview.innerHTML = Input.value;
     }
 
-    const cvrColorHandler = function() {
-      cvrSetColor();
+    const setHeight = function() {
+      PreviewHeight.innerHTML = Size.value;
     }
 
-    const cvrFontHandler = function() {
-      cvrSetFont();
+    const setFont = function() {
+      Preview.style.cssText  = $('.font-picker').attr('style');
+      setColor();
     }
 
-     const cvrSetColor = function() {
-      switch (CVR_Color.selectedIndex) {
+    const setColor = function() {
+      switch (Color.selectedIndex) {
         case 0:
-          CVR_Preview.style.color  = "#eaebef";
+          Preview.style.color  = "#070609";
           break;
         case 1:
-          CVR_Preview.style.color  = "#ffc701";
+          Preview.style.color  = "#eaebef";
           break;
         case 2:
-          CVR_Preview.style.color  = "#f4e318";
+          Preview.style.color  = "#ffc701";
           break;
         case 3:
-          CVR_Preview.style.color  = "#e24601";
+          Preview.style.color  = "#f4e318";
           break;
         case 4:
-          CVR_Preview.style.color  = "#b6010d";
+          Preview.style.color  = "#b6010d";
           break;
         case 5:
-          CVR_Preview.style.color  = "#602e68";
+          Preview.style.color  = "#e24601";
           break;
         case 6:
-          CVR_Preview.style.color  = "#c92969";
+          Preview.style.color  = "#602e68";
           break;
         case 7:
-          CVR_Preview.style.color  = "#f488b6";
+          Preview.style.color  = "#c92969";
           break;
         case 8:
-          CVR_Preview.style.color  = "#7961a1";
+          Preview.style.color  = "#7961a1";
           break;
         case 9:
-          CVR_Preview.style.color  = "#0286c6";
+          Preview.style.color  = "#f488b6";
           break;
         case 10:
-          CVR_Preview.style.color  = "#5acebb";
+          Preview.style.color  = "#0286c6";
           break;
         case 11:
-          CVR_Preview.style.color  = "#027a4f";
+          Preview.style.color  = "#5acebb";
           break;
         case 12:
-          CVR_Preview.style.color  = "#013b7b";
+          Preview.style.color  = "#027a4f";
           break;
         case 13:
-          CVR_Preview.style.color  = "#757e7d";
+          Preview.style.color  = "#013b7b";
           break;
         case 14:
-          CVR_Preview.style.color  = "#070609";
+          Preview.style.color  = "#757e7d";
           break;
         case 15:
-          CVR_Preview.style.color  = "#979a95";
+          Preview.style.color  = "#979a95";
           break;
         case 16:
-          CVR_Preview.style.color  = "#ab7e50";
+          Preview.style.color  = "#ab7e50";
           break;
       }
     }
 
-    const cvrSetFont = function() {
-      switch (CVR_Font.selectedIndex) {
-        case 0:
-          CVR_Preview.style.fontFamily  = "Arial, sans-serif";
-          break;
-        case 1:
-          CVR_Preview.style.fontFamily  = "Verdana, sans-serif";
-          break;
-        case 2:
-          CVR_Preview.style.fontFamily  = "Tahoma, sans-serif";
-          break;
-        case 3:
-          CVR_Preview.style.fontFamily  = "Trebuchet MS, sans-serif";
-          break;
-        case 4:
-          CVR_Preview.style.fontFamily  = "Times New Roman, serif";
-          break;
-      }
-    }
+    setColor();
+    setFont();
+    setHeight();
 
-    cvrSetColor();
-    cvrSetFont();
+    Input.addEventListener('input', inputHandler);
+    Input.addEventListener('propertychange', inputHandler); // for IE8
 
-    CVR_Input.addEventListener('input', cvrInputHandler);
-    CVR_Input.addEventListener('propertychange', cvrInputHandler); // for IE8
+    Color.addEventListener('input', setColor);
+    Color.addEventListener('propertychange', setColor);
 
-    CVR_Color.addEventListener('input', cvrColorHandler);
-    CVR_Color.addEventListener('propertychange', cvrColorHandler);
+    Size.addEventListener('input', setHeight);
 
-    CVR_Font.addEventListener('input', cvrFontHandler);
-    CVR_Font.addEventListener('propertychange', cvrFontHandler);
+    $('#SKRIFTTYPE').fontpicker().on('change', setFont);
   });
 </script>
 
 <style>
-#Tekst_Preview {
+#PreviewContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+#Preview {
   text-align: center;
   padding: 40px 10px;
   font-size: 48px;
   font-weight: bold;
   font-family: "Arial";
   margin: 20px 0;
+}
+
+#PreviewHeightContainer {
+  margin-left: 20px;
+  position: absolute;
+  right: 0px;
+  display: flex;
+  align-items: center;
+}
+
+#PreviewHeight {
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+body .font-picker.fp-select {
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-color: var(--colorBorder);
+  max-width: 100%;
+  padding: 5px 28px 4px 10px;
+  border-radius: 0px;
+  min-width: 160px;
 }
 </style>
